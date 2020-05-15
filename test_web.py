@@ -29,5 +29,5 @@ def log_up():
         break
 
 if __name__=='__main__':
-    
+    log_up
     login()

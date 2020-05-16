@@ -30,9 +30,15 @@ def load_user(user_id):
         return curr_user
 
 
-@app.route('/')
+@app.route('/',methods=['GET','POST'])
 @login_required
 def index():
+    if request.method == 'POST':
+        button_never = request.form['button_never']
+        print(button_never)
+        if button_never=="不再看此题":
+            never_add()
+            print("added")
     nameid = current_user.get_id()
     one=get_one()
     question, answer, belong, pages ,count= get_question(one)

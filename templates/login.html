@@ -8,6 +8,7 @@
 </head>
     <style>
         .div1{
+            padding-top: 40%;
             margin:20px auto;
             padding: 10px;
             text-align: center;
@@ -18,7 +19,7 @@
     input{
         border:1px solid #d2d2d2;
         background-color: transparent;
-        width: 70%;
+        width: 250px;
         height: 20px;
     }
     </style>
@@ -29,9 +30,9 @@
             <div>{{ messages[0] }}</div>
         {% endwith %}
             <form action="{{ url_for('login') }}" method="POST">
-            <input type="text" name="userid" id="userid" placeholder="用户ID" id="input1"></input><br>
-            <input type="password" name="password" id="password" placeholder="密码" id="input1"></input><br>
-            <input type="submit" name="submit" ></input>
+            <input type="text" name="userid" id="userid" placeholder="用户ID" ></input><br>
+            <input type="password" name="password" id="password" placeholder="密码" ></input><br>
+            <input type="submit" name="submit" ></input>s
         </form>
     </div>
 </body>

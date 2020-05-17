@@ -59,13 +59,15 @@
 </div>
 
 <div id="div2">
-    <form action="{{ url_for('index') }}" method="POST">
+
         <p><a id="buttons" href="javascript:location.reload() ;" class="btn blue">下一道题</a></p>
     <br>
-        <p><a id="buttons" type="button" name="button_never"   class="btn blue">"不再看此题"</a>
-    <br>
+{#        <form action="{{ url_for('index') }}" method="GET">#}
+{#            <p><input id="buttons" type="button" name="button_never"   class="btn blue"></p>#}
+{#            <br>#}
+{#        </form>#}
         <p><a id="out" href="../logout" >退出</a></p>
-    </form>
+
 
 </div>
 

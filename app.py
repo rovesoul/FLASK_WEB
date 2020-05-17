@@ -33,12 +33,6 @@ def load_user(user_id):
 @app.route('/',methods=['GET','POST'])
 @login_required
 def index():
-    if request.method == 'POST':
-        button_never = request.form['button_never']
-        print(button_never)
-        if button_never=="不再看此题":
-            never_add()
-            print("added")
     nameid = current_user.get_id()
     one=get_one()
     question, answer, belong, pages ,count= get_question(one)
@@ -119,8 +113,10 @@ def get_question(num):
 
 
 def get_one():
-    global never_num
+    global never_num,keys
     one = random.sample(keys, 1)[0]
+    keys.remove(one)  #保证绝对不会重复
+    print(len(keys))
     never_num = one
     # print("选择的:", one)
     # with open(neverfile, 'a+') as neverdf:

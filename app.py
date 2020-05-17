@@ -34,25 +34,37 @@ def load_user(user_id):
 @login_required
 def index():
     nameid = current_user.get_id()
-    one=get_one()
-    question, answer, belong, pages ,count= get_question(one)
-    # "清理"
-    question=str(question).replace(" ","")
-    question=question.replace("：","：\n")
-    question=question.replace("；","；\n")
-    answer=str(answer).replace(" ","")
-    belong=str(belong).replace("","")
+    try:
+        one=get_one()
+        question, answer, belong, pages ,count= get_question(one)
+        # "清理"
+        question=str(question).replace(" ","")
+        question=question.replace("：","：\n")
+        question=question.replace("；","；\n")
+        answer=str(answer).replace(" ","")
+        belong=str(belong).replace("","")
 
-    return render_template('webtest.html',
-                           titles=question,
-                           answers=answer,
-                           fromes=belong,
-                           pages=pages,
-                           name=nameid,
-                           countsum=countsum,
-                           countnow=count,
-                           count_know=count_know,
-                           )  # 从templates中找到
+        return render_template('webtest.html',
+                               titles=question,
+                               answers=answer,
+                               fromes=belong,
+                               pages=pages,
+                               name=nameid,
+                               countsum=countsum,
+                               countnow=count,
+                               count_know=count_know,
+                               )  # 从templates中找到
+    except:
+        return render_template('webtest.html',
+                               titles='question',
+                               answers='answer',
+                               fromes='belong',
+                               pages='pages',
+                               name='nameid',
+                               countsum=countsum,
+                               countnow='没了',
+                               count_know='没了',
+                               )  # 从templates中找到
     # return 'Logged in as: %s' % current_user.get_id()
 
 
@@ -80,6 +92,18 @@ def login():
 @login_required
 def logout():
     logout_user()
+    return render_template('logout.html')
+
+@app.route('/logout_clean')
+@login_required
+def logout_clean():
+    global keys , count
+    keys = get_data.index_list
+    count=0
+    print(count)
+    # keys = [item for item in keys if item not in never_look_list]
+    logout_user()
+
     return render_template('logout.html')
 
 
@@ -149,3 +173,4 @@ if __name__ == '__main__':
     # app.run(debug=True)
     app.run(host='0.0.0.0', port=80, threaded=True)
     # app.run(host = '0.0.0.0')
+# https://github.com/rovesoul/FLASK_WEB.git

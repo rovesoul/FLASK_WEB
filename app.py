@@ -56,14 +56,14 @@ def index():
                                )  # 从templates中找到
     except:
         return render_template('webtest.html',
-                               titles='question',
-                               answers='answer',
-                               fromes='belong',
-                               pages='pages',
-                               name='nameid',
-                               countsum=countsum,
-                               countnow='没了',
-                               count_know='没了',
+                               titles='请点清空进度退出重新登录',
+                               answers='请点清空进度退出重新登录',
+                               fromes='请点清空进度退出重新登录',
+                               pages='请点清空进度退出重新登录',
+                               name=nameid,
+                               countsum='完满',
+                               countnow='完满',
+                               count_know='完满',
                                )  # 从templates中找到
     # return 'Logged in as: %s' % current_user.get_id()
 

@@ -1,6 +1,6 @@
 from pandas import read_excel
 
-df=read_excel("清理后2.xls")
+df=read_excel("static/csv/清理后2.xls")
 
 # 原始有多少行
 count_lines= df.shape[0]

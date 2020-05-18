@@ -94,6 +94,43 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/logup', methods=['GET', 'POST'])
+def logup():
+    return render_template('logup.html')
+
+@app.route('/logupsave', methods=['GET', 'POST'])
+def logupsave():
+    if request.method == 'POST':
+        user_id = request.form.get('userid')
+        user = query_user(user_id)
+        password=request.form['password']
+        password2=request.form['password2']
+        if user is not None:
+            flash('已有此用户!')
+            return redirect(url_for('logup'))
+        
+        elif password !=password2:
+            flash('两次密码不一致!')
+            return redirect(url_for('logup'))
+        else : 
+            saveid(user_id,password)
+            curr_user = User()
+            curr_user.id = user_id
+
+            # 通过Flask-Login的login_user方法登录用户
+            login_user(curr_user)
+
+            return redirect(url_for('choice'))
+
+    #         return redirect(url_for('choice'))
+
+    #     flash('Wrong username or password!')
+
+    # # GET 请求
+    # return render_template('login.html')
+
+
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -163,6 +200,13 @@ def never_add():
         print("加入成功:",count_know)
     else:
         pass
+
+def saveid(user_id,password):
+    lines=f'\n{user_id},{user_id},{password}'
+    with open('static/csv/users.csv','a+',encoding='utf-8') as dt:
+        dt.write(lines)
+
+
 
 
 def clean_csv():

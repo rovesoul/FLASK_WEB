@@ -30,9 +30,14 @@ def load_user(user_id):
         return curr_user
 
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/choice',methods=['GET','POST'])
 @login_required
-def index():
+def choice():
+    return render_template('choice.html',)
+
+@app.route('/jiance_gongji',methods=['GET','POST'])
+@login_required
+def jiance_gongji():
     nameid = current_user.get_id()
     try:
         one=get_one()
@@ -44,7 +49,7 @@ def index():
         answer=str(answer).replace(" ","")
         belong=str(belong).replace("","")
 
-        return render_template('webtest.html',
+        return render_template('jiance_gongji.html',
                                titles=question,
                                answers=answer,
                                fromes=belong,
@@ -55,7 +60,7 @@ def index():
                                count_know=count_know,
                                )  # 从templates中找到
     except:
-        return render_template('webtest.html',
+        return render_template('jiance_gongji.html',
                                titles='请点清空进度退出重新登录',
                                answers='请点清空进度退出重新登录',
                                fromes='请点清空进度退出重新登录',
@@ -80,7 +85,7 @@ def login():
             # 通过Flask-Login的login_user方法登录用户
             login_user(curr_user)
 
-            return redirect(url_for('index'))
+            return redirect(url_for('choice'))
 
         flash('Wrong username or password!')
 

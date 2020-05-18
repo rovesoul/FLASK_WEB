@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>公共基础测试题</title>
+    <link rel="stylesheet" href="indexs.css">
+</head>
+
+<body>
+    <div id="div1">
+        <h6>{{ name }}加油! </h6>
+        <h5>随机题目</h5>
+        <p>{{ titles }}</p>
+        <h5>对应答案</h5>
+        <p>{{ answers }}</p>
+        <h5>题目出自</h5>
+        <p>{{ fromes }}</p>
+        <h5>题目页面</h5>
+        <p>{{ pages }}</p>
+        <h5>本次刷题数,总共题数</h5>
+        <p>{{ countnow }} | {{ countsum }}</p>
+        {#
+        <p>已会数量{{ count_know }}</p>#}
+    </div>
+
+    <div id="div2">
+
+        <p id="out"><a style="color:whitesmoke" href="javascript:location.reload() ;" class="btn blue">下一道题</a></p>
+
+        {#
+        <form action="{{ url_for('index') }}" method="GET">#} {#
+            <p><input id="buttons" type="button" name="button_never" class="btn blue"></p>#} {# <br>#} {# </form>#}
+
+        <p id="out">
+            <a style="color:whitesmoke" href="../logout_clean">清空进度退出</a> |
+            <a style="color:whitesmoke" href="../logout">保留进度退出</a></p>
+        <p></p>
+
+
+    </div>
+
+</body>
+
+</html>

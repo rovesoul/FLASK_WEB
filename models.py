@@ -7,7 +7,7 @@ users = []
 
 def query_user(user_id):
     users=get_user()
-    print("users",users)
+    # print("users",users)
     for user in users:
         if user_id == user['id']:
             return user
@@ -23,4 +23,4 @@ def get_user():
             users.append(idone)
         return users
 
-print(get_user())
+# print(get_user())

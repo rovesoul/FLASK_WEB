@@ -6,37 +6,85 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>公共基础测试题</title>
     <link rel="stylesheet" type="text/css" href="../static/css/indexs.css" charset="utf-8">
+    <style>
+        #myDiv>h5 {
+            color: darkslategray;
+            font-size: 12px;
+            vertical-align: bottom;
+            line-height: 80%;
+        }
+        
+        #myDiv>p {
+            padding-left: 3%;
+            padding-right: 3%;
+            vertical-align: top;
+            color: #2E2E2E;
+            font-size: 16px;
+            line-height: 130%;
+        }
+        
+        #myDiv>h6 {
+            text-align: right;
+            color: gray;
+            padding-right: 10px
+        }
+    </style>
+    <script>
+        function loadXMLDoc() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "/ajax_gongji", true);
+            xmlhttp.send();
+        }
+    </script>
 </head>
 
 <body>
     <div id="div1">
-        <h6>{{ name }}加油! </h6>
-        <h5>随机题目</h5>
-        <p>{{ titles }}</p>
-        <h5>对应答案</h5>
-        <p>{{ answers }}</p>
-        <h5>题目出自</h5>
-        <p>{{ fromes }}</p>
-        <h5>题目页面</h5>
-        <p>{{ pages }}</p>
-        <h5>本次刷题数,总共题数</h5>
-        <p>{{ countnow }} | {{ countsum }}</p>
-        {#
-        <p>已会数量{{ count_know }}</p>#}
+        <div id="myDiv">
+            <h6>{{ name }}加油! </h6>
+            <h5>随机题目</h5>
+            <p>{{ titles }}</p>
+            <h5>对应答案</h5>
+            <p>{{ answers }}</p>
+            <h5>题目出自</h5>
+            <p>{{ fromes }}</p>
+            <h5>题目页面</h5>
+            <p>{{ pages }}</p>
+            <h5>本次刷题数,总共题数</h5>
+            <p>{{ countnow }} | {{ countsum }}</p>
+        </div>
+
+
+
+
+
     </div>
 
     <div id="div2">
+        <button style="width: 120px; height: 30px;border-radius: 10px;background-color: yellow; font-size: medium;" type="button" onclick="loadXMLDoc()" class="btn blue">下一道</button>
 
-        <p id="out"><a style="color:whitesmoke" href="javascript:location.reload() ;" class="btn blue">下一道题</a></p>
+        <!-- <p id="out"><a style="color:whitesmoke" href="javascript:location.reload() ;" class="btn blue">下一道题</a></p> -->
 
         {#
         <form action="{{ url_for('index') }}" method="GET">#} {#
             <p><input id="buttons" type="button" name="button_never" class="btn blue"></p>#} {# <br>#} {# </form>#}
 
         <p id="out">
-            <a style="color:whitesmoke" href="../logout_clean">清空进度退出</a> |
-            <a style="color:whitesmoke" href="../logout">保留进度退出</a></p>
-        <p></p>
+            <a style="color:whitesmoke" href="../logout_clean">退出并清空进度</a>
+            <!-- <a style="color:whitesmoke" href="../logout">保留进度退出</a></p> -->
+            <p></p>
 
 
     </div>

@@ -10,14 +10,14 @@
     overflow-y: scroll;
 }
 
-#div1>h5 {
+#myDiv>h5 {
     color: darkslategray;
     font-size: 12px;
     vertical-align: bottom;
     line-height: 80%;
 }
 
-#div1>p {
+#myDiv>p {
     padding-left: 3%;
     padding-right: 3%;
     vertical-align: top;
@@ -26,7 +26,7 @@
     line-height: 130%;
 }
 
-#div1>h6 {
+#myDiv>h6 {
     text-align: right;
     color: gray;
     padding-right: 10px
@@ -37,7 +37,7 @@
     margin: 8px auto;
     border-radius: 10px;
     max-width: 98%;
-    background-color: silver;
+    background-color: rgb(223, 223, 223);
     height: 75px;
     text-align: center;
     padding: 8px;
@@ -52,11 +52,12 @@ a {
 }
 
 #out {
-    height: 22px;
+    height: 30px;
+    width: 120px;
     margin-left: 10%;
     margin-right: 10%;
     font-size: 10px;
-    border-radius: inherit;
-    background-color: #444444;
+    border-radius: 3px;
+    background-color: #bcb7ff;
     color: azure
 }

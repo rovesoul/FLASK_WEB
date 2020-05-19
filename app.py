@@ -40,39 +40,44 @@ def choice():
 @login_required
 def jiance_gongji():
     nameid = current_user.get_id()
+    
+    return render_template('jiance_gongji.html',
+                               titles='随机题目',
+                               answers='对应答案',
+                               fromes='对应章节',
+                               pages='对应页面',
+                               name=nameid,
+                               countsum='待',
+                               countnow='待',
+                               count_know='待',
+                               )  # 从templates中找到
+    # return 'Logged in as: %s' % current_user.get_id()
+
+@app.route('/ajax_gongji',methods=['GET','POST'])
+@login_required
+def ajax_gongji():
+    """公共基础部分"""
+    global countsum,count
+    nameid = current_user.get_id()
     try:
+        # while True:
         one=get_one()
+
         question, answer, belong, pages ,count= get_question(one)
-        # "清理"
         question=str(question).replace(" ","")
         question=question.replace("：","：\n")
         question=question.replace("；","；\n")
         answer=str(answer).replace(" ","")
         belong=str(belong).replace("","")
-
-        return render_template('jiance_gongji.html',
-                               titles=question,
-                               answers=answer,
-                               fromes=belong,
-                               pages=pages,
-                               name=nameid,
-                               countsum=countsum,
-                               countnow=count,
-                               count_know=count_know,
-                               )  # 从templates中找到
-    except:
-        return render_template('jiance_gongji.html',
-                               titles='请点清空进度退出重新登录',
-                               answers='请点清空进度退出重新登录',
-                               fromes='请点清空进度退出重新登录',
-                               pages='请点清空进度退出重新登录',
-                               name=nameid,
-                               countsum='完满',
-                               countnow='完满',
-                               count_know='完满',
-                               )  # 从templates中找到
-    # return 'Logged in as: %s' % current_user.get_id()
-
+        titles=question
+        answers=answer
+        fromes=belong
+        pages=pages
+        name=nameid
+        countsum=countsum
+        countnow=count
+        return  f"<h6>{ name }加油! </h6><h5>随机题目</h5><p>{ titles }</p><h5>对应答案</h5><p>{ answers }</p><h5>题目出自</h5><p>{ fromes }</p><h5>题目页面</h5><p>{ pages }</p><h5>本次刷题数,总共题数</h5><p>{ countnow } | { countsum }</p>"               
+    except: return'全部刷题完毕'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -87,9 +92,7 @@ def login():
             login_user(curr_user)
 
             return redirect(url_for('choice'))
-
         flash('Wrong username or password!')
-
     # GET 请求
     return render_template('login.html')
 
@@ -122,12 +125,7 @@ def logupsave():
 
             return redirect(url_for('choice'))
 
-    #         return redirect(url_for('choice'))
 
-    #     flash('Wrong username or password!')
-
-    # # GET 请求
-    # return render_template('login.html')
 
 
 
@@ -142,8 +140,9 @@ def logout():
 def logout_clean():
     global keys , count
     keys = get_data.index_list
+    print('logou key len',keys)
     count=0
-    print(count)
+    # print(count)
     # keys = [item for item in keys if item not in never_look_list]
     logout_user()
 
@@ -175,19 +174,14 @@ def get_question(num):
     belong = df.loc[num, ['出处'][0]]
     pages = df.loc[num, ['页码'][0]]
     if str(pages) == "nan": pages = "page记录为空"
-    print(question, answer, belong, pages)
+    # print(question, answer, belong, pages)
     return question, answer, belong, pages,count
 
 
 def get_one():
-    global never_num,keys
+    global keys
     one = random.sample(keys, 1)[0]
     keys.remove(one)  #保证绝对不会重复
-    print(len(keys))
-    never_num = one
-    # print("选择的:", one)
-    # with open(neverfile, 'a+') as neverdf:
-    #     neverdf.writelines(str(never_num) + '\n')
     return one
 
 

@@ -34,7 +34,7 @@ def load_user(user_id):
 @app.route('/choice',methods=['GET','POST'])
 @login_required
 def choice():
-    return render_template('choice.html',)
+    return render_template('choice_nosifa.html',)
 
 @app.route('/jiance_gongji',methods=['GET','POST'])
 @login_required

@@ -17,7 +17,7 @@ app.secret_key = '1234567'
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
-login_manager.login_message = '请登录'
+login_manager.login_message = 'please login'
 login_manager.init_app(app)
 
 
@@ -234,5 +234,3 @@ if __name__ == '__main__':
     # app.run(host='0.0.0.0', port=8080)
     # app.run(debug=True)
     app.run(host='0.0.0.0', port=80, threaded=True)
-    # app.run(host = '0.0.0.0')
-# https://github.com/rovesoul/FLASK_WEB.git

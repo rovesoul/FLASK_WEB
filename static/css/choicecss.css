@@ -11,7 +11,7 @@
     height: 60px;
     margin: 5px;
     border-radius: 5px;
-    background-image: linear-gradient(45deg, orange, yellow);
+    background-image: linear-gradient(45deg, rgba(248, 224, 4, 0.911), rgba(255, 255, 0, 0.637));
     text-align: center;
 }
 

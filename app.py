@@ -53,6 +53,24 @@ def jiance_gongji():
                                )  # 从templates中找到
     # return 'Logged in as: %s' % current_user.get_id()
 
+@app.route('/jiaotongdagang',methods=['GET','POST'])
+@login_required
+def jiaotongdagang():
+    nameid = current_user.get_id()
+    return render_template('交通工程目录.html',
+                               name=nameid,
+                               )  
+
+@app.route('/gongjidagang',methods=['GET','POST'])
+@login_required
+def gongjidagang():
+    nameid = current_user.get_id()
+    return render_template('公共基础大纲.html',
+                               name=nameid,
+                               )  
+
+
+
 @app.route('/ajax_gongji',methods=['GET','POST'])
 @login_required
 def ajax_gongji():
